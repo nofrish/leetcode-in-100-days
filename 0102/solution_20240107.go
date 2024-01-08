@@ -15,20 +15,13 @@ func levelOrder(root *TreeNode) [][]int {
 		return result
 	}
 
-	nexts := make([]*TreeNode, 0)
-	nexts = append(nexts, root)
-
+	nexts := []*TreeNode{root}
 	for len(nexts) > 0 {
-		s := make([]int, 0)
-		for _, node := range nexts {
-			s = append(s, node.Val)
-		}
-		result = append(result, s)
-
-		curs := nexts
+		nodes := nexts
 		nexts = nexts[0:0:0]
-
-		for _, node := range curs {
+		vals := make([]int, len(nodes))
+		for i, node := range nodes {
+			vals[i] = node.Val
 			if node.Left != nil {
 				nexts = append(nexts, node.Left)
 			}
@@ -36,6 +29,7 @@ func levelOrder(root *TreeNode) [][]int {
 				nexts = append(nexts, node.Right)
 			}
 		}
+		result = append(result, vals)
 	}
 
 	return result
