@@ -9,10 +9,10 @@ type Node struct {
 
 func canAttendMeetings(intervals [][]int) bool {
 
-	nodes := make([]Node, len(intervals)*2)
-	for i, interval := range intervals {
-		nodes[2*i] = Node{interval[0], 1}
-		nodes[2*i+1] = Node{interval[1], -1}
+	nodes := make([]Node, 0, len(intervals)*2)
+	for _, interval := range intervals {
+		nodes = append(nodes, Node{interval[0], 1})
+		nodes = append(nodes, Node{interval[1], -1})
 	}
 
 	sort.Slice(nodes, func(i, j int) bool {
