@@ -11,12 +11,10 @@ func merge(intervals [][]int) [][]int {
 		return intervals[i][0] < intervals[j][0]
 	})
 
-	result := make([][]int, 0)
-	result = append(result, intervals[0])
-
+	result := [][]int{intervals[0]}
 	for _, interval := range intervals[1:] {
 		last := result[len(result)-1]
-		if interval[0] <= last[1] {
+		if last[1] >= interval[0] {
 			last[1] = int(math.Max(float64(last[1]), float64(interval[1])))
 		} else {
 			result = append(result, interval)
