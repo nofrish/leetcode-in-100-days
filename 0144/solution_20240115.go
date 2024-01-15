@@ -2,7 +2,7 @@ package _144
 
 var result = make([]int, 0)
 
-func preorderTraversal_(root *TreeNode) []int {
+func preorderTraversal__(root *TreeNode) []int {
 	result = result[0:0:0]
 	dfs(root)
 	return result
