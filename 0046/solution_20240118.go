@@ -9,7 +9,7 @@ func permute(nums []int) (result [][]int) {
 			return
 		}
 		for i, v := range remains {
-			dfs(append(prefix, v), append(append([]int{}, remains[0:i]...), remains[i+1:]...))
+			dfs(append(append([]int{}, prefix...), v), append(append([]int{}, remains[0:i]...), remains[i+1:]...))
 		}
 	}
 
