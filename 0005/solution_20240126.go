@@ -1,6 +1,6 @@
 package _005
 
-func _longestPalindrome(s string) (result string) {
+func longestPalindrome_(s string) (result string) {
 
 	getPString := func(s string, l, r int) string {
 		for l >= 0 && r < len(s) && s[l] == s[r] {
