@@ -37,6 +37,10 @@ func threeSumClosest(nums []int, target int) int {
 			} else {
 				return sum
 			}
+
+			if sum > target && sum > 0 {
+				break
+			}
 		}
 	}
 
