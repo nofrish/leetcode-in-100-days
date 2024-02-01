@@ -17,11 +17,11 @@ type ListNode struct {
 func removeElements(head *ListNode, val int) *ListNode {
 
 	dummy := &ListNode{0, head}
-	for curser := dummy; curser.Next != nil; {
-		if curser.Next.Val == val {
-			curser.Next = curser.Next.Next
+	for cur := dummy; cur.Next != nil; {
+		if cur.Next.Val == val {
+			cur.Next = cur.Next.Next
 		} else {
-			curser = curser.Next
+			cur = cur.Next
 		}
 	}
 	return dummy.Next
