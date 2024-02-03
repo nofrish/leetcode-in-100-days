@@ -1,6 +1,10 @@
 package _047
 
-func permuteUnique(nums []int) (result [][]int) {
+import "sort"
+
+func permuteUnique__(nums []int) (result [][]int) {
+
+	sort.Ints(nums)
 
 	var dfs func(prefix []int, options []int)
 	dfs = func(prefix []int, options []int) {
@@ -8,11 +12,11 @@ func permuteUnique(nums []int) (result [][]int) {
 			result = append(result, prefix)
 			return
 		}
-		used := make(map[int]bool)
+		last := -17
 		for i, v := range options {
-			if !used[v] {
+			if last == -17 || v != last {
 				dfs(append(append([]int{}, prefix...), v), append(append([]int{}, options[0:i]...), options[i+1:]...))
-				used[v] = true
+				last = v
 			}
 		}
 	}
