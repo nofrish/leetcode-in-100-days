@@ -1,6 +1,6 @@
 package _077
 
-func combine(n int, k int) (result [][]int) {
+func combine_(n int, k int) (result [][]int) {
 
 	var dfs func(prefix []int, remains []int)
 	dfs = func(prefix []int, remains []int) {
