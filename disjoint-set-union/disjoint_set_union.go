@@ -1,20 +1,24 @@
 package disjoint_set_union
 
-type DSU struct {
-	parants []int
+type DisjointSet struct {
+	parents []int
 }
 
-func NewDSU(size int) *DSU {
-	return &DSU{parants: make([]int, size)}
-}
-
-func (dsu *DSU) Find(i int) int {
-	if dsu.parants[i] != i {
-		dsu.parants[i] = dsu.Find(dsu.parants[i])
+func New(size int) *DisjointSet {
+	ds := &DisjointSet{parents: make([]int, size)}
+	for i := range ds.parents {
+		ds.parents[i] = i
 	}
-	return dsu.parants[i]
+	return ds
 }
 
-func (dsu *DSU) Union(i, j int) {
-	dsu.parants[i] = dsu.Find(j)
+func (ds *DisjointSet) Find(x int) int {
+	if ds.parents[x] != x {
+		ds.parents[x] = ds.Find(ds.parents[x]) // with path compression
+	}
+	return x
+}
+
+func (ds *DisjointSet) Union(x, y int) {
+	ds.parents[x] = ds.Find(y)
 }
