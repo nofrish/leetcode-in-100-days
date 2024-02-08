@@ -25,8 +25,8 @@ func rob(root *TreeNode) int {
 		right := dfs(node.Right)
 
 		res := [2]int{}
-		res[0] = node.Val + left[1] + right[1]
-		res[1] = max(left[0], left[1]) + max(right[0], right[1])
+		res[0] = node.Val + left[1] + right[1]                   // 表示选择当前节点
+		res[1] = max(left[0], left[1]) + max(right[0], right[1]) // 表示不选择当前节点
 		return res
 	}
 
