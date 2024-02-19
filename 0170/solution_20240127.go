@@ -5,7 +5,7 @@ type TwoSum struct {
 }
 
 func Constructor() TwoSum {
-	return TwoSum{exists: make(map[int]int, 0)}
+	return TwoSum{exists: make(map[int]int)}
 }
 
 func (this *TwoSum) Add(number int) {
@@ -15,8 +15,8 @@ func (this *TwoSum) Add(number int) {
 func (this *TwoSum) Find(value int) bool {
 	for one := range this.exists {
 		other := value - one
-		if v, ok := this.exists[other]; ok {
-			if other == one && v == 1 {
+		if count, ok := this.exists[other]; ok {
+			if other == one && count == 1 {
 				continue
 			}
 			return true
@@ -24,10 +24,3 @@ func (this *TwoSum) Find(value int) bool {
 	}
 	return false
 }
-
-/**
- * Your TwoSum object will be instantiated and called as such:
- * obj := Constructor();
- * obj.Add(number);
- * param_2 := obj.Find(value);
- */
