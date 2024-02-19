@@ -10,11 +10,10 @@ func threeSum_(nums []int) (result [][]int) {
 		if nums[i] > 0 {
 			break
 		}
-		if i > 0 && nums[i] == nums[i-1] {
+		if i > 0 && nums[i] == nums[i-1] { // deduplicate first
 			continue
 		}
 
-		target := 0 - nums[i]
 		left, right := i+1, len(nums)-1
 		for left < right {
 			if left > i+1 && nums[left] == nums[left-1] { // deduplicate left
@@ -26,10 +25,10 @@ func threeSum_(nums []int) (result [][]int) {
 				continue
 			}
 
-			sum := nums[left] + nums[right]
-			if sum < target {
+			sum := nums[i] + nums[left] + nums[right]
+			if sum < 0 {
 				left++
-			} else if sum > target {
+			} else if sum > 0 {
 				right--
 			} else {
 				result = append(result, []int{nums[i], nums[left], nums[right]})
