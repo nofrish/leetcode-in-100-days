@@ -5,16 +5,15 @@ import (
 	"sort"
 )
 
-func threeSumClosest(nums []int, target int) int {
+func threeSumClosest_(nums []int, target int) (result int) {
 
 	sort.Ints(nums)
 
-	result := nums[0] + nums[1] + nums[2]
-	for i := 0; i < len(nums); i++ {
+	distance := math.MaxInt
+	for i := range nums {
 		if i > 0 && nums[i] == nums[i-1] {
 			continue
 		}
-
 		left, right := i+1, len(nums)-1
 		for left < right {
 			if left > i+1 && nums[left] == nums[left-1] {
@@ -25,24 +24,19 @@ func threeSumClosest(nums []int, target int) int {
 				right--
 				continue
 			}
-
 			sum := nums[i] + nums[left] + nums[right]
-			if math.Abs(float64(result-target)) > math.Abs(float64(sum-target)) {
+			if distance > int(math.Abs(float64(sum)-float64(target))) {
 				result = sum
+				distance = int(math.Abs(float64(sum) - float64(target)))
 			}
 			if sum < target {
 				left++
 			} else if sum > target {
 				right--
 			} else {
-				return sum
-			}
-
-			if sum > target && sum > 0 {
-				break
+				return target
 			}
 		}
 	}
-
-	return result
+	return
 }
