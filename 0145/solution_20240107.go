@@ -17,12 +17,6 @@ type TreeNode struct {
 
 func postorderTraversal(root *TreeNode) (result []int) {
 
-	reverse := func(s []int) {
-		for i, j := 0, len(s)-1; i < j; i, j = i+1, j-1 {
-			s[i], s[j] = s[j], s[i]
-		}
-	}
-
 	nexts := []*TreeNode{root}
 	for len(nexts) > 0 {
 		node := nexts[len(nexts)-1]
@@ -34,6 +28,9 @@ func postorderTraversal(root *TreeNode) (result []int) {
 		}
 	}
 
-	reverse(result)
+	// reverse result
+	for i, j := 0, len(result)-1; i < j; i, j = i+1, j-1 {
+		result[i], result[j] = result[j], result[i]
+	}
 	return
 }
