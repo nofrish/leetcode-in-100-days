@@ -19,6 +19,18 @@ func minDepth(root *TreeNode) int {
 	if root == nil {
 		return 0
 	}
+	d1 := minDepth(root.Left)
+	d2 := minDepth(root.Right)
+	if d1 == 0 || d2 == 0 {
+		return max(d1, d2) + 1
+	}
+	return min(d1, d2) + 1
+}
+
+func minDepth_(root *TreeNode) int {
+	if root == nil {
+		return 0
+	}
 
 	nexts := []*TreeNode{root}
 	for level := 1; len(nexts) > 0; level++ {
