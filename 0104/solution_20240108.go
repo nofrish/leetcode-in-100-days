@@ -9,16 +9,8 @@ package _104
  * }
  */
 func maxDepth(root *TreeNode) int {
-
 	if root == nil {
 		return 0
 	}
-
-	ldepth := maxDepth(root.Left)
-	rdepth := maxDepth(root.Right)
-
-	if ldepth >= rdepth {
-		return ldepth + 1
-	}
-	return rdepth + 1
+	return 1 + max(maxDepth(root.Left), maxDepth(root.Right))
 }
