@@ -30,3 +30,17 @@ func searchBST_(root *TreeNode, val int) (result *TreeNode) {
 	}
 	return
 }
+
+func searchBST__(root *TreeNode, val int) (result *TreeNode) {
+
+	for root != nil {
+		if val < root.Val {
+			root = root.Left
+		} else if val > root.Val {
+			root = root.Right
+		} else {
+			return root
+		}
+	}
+	return nil
+}
