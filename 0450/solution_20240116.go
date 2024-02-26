@@ -29,14 +29,13 @@ func deleteNode(root *TreeNode, key int) *TreeNode {
 		}
 		root.Val = findMinVal(root.Right)
 		root.Right = deleteNode(root.Right, root.Val)
-	}
-
-	if key < root.Val {
-		root.Left = deleteNode(root.Left, key)
 	} else {
-		root.Right = deleteNode(root.Right, key)
+		if key < root.Val {
+			root.Left = deleteNode(root.Left, key)
+		} else {
+			root.Right = deleteNode(root.Right, key)
+		}
 	}
-
 	return root
 }
 
