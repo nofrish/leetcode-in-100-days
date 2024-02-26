@@ -29,3 +29,28 @@ func insertIntoBST(root *TreeNode, val int) *TreeNode {
 
 	return root
 }
+
+func insertIntoBST_(root *TreeNode, val int) *TreeNode {
+
+	node := &TreeNode{val, nil, nil}
+	if root == nil {
+		return node
+	}
+
+	var prev *TreeNode
+	for cur := root; cur != nil; {
+		prev = cur
+		if val < cur.Val {
+			cur = cur.Left
+		} else {
+			cur = cur.Right
+		}
+	}
+	if prev.Val > val {
+		prev.Left = &TreeNode{val, nil, nil}
+	} else {
+		prev.Right = &TreeNode{val, nil, nil}
+	}
+
+	return root
+}
