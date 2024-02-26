@@ -32,6 +32,5 @@ func closestValue(root *TreeNode, target float64) (result int) {
 			root = root.Right
 		}
 	}
-
 	return
 }
