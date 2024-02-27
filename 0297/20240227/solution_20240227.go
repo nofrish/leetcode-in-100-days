@@ -1,4 +1,4 @@
-package _297
+package _0240227
 
 import (
 	"fmt"
@@ -30,36 +30,49 @@ func Constructor() Codec {
 
 // Serializes a tree to a single string.
 func (this *Codec) serialize(root *TreeNode) string {
-	if root == nil {
-		return "-"
+
+	sb := strings.Builder{}
+	var dfs func(node *TreeNode)
+	dfs = func(node *TreeNode) {
+		if node == nil {
+			sb.WriteString("#,")
+			return
+		}
+		sb.WriteString(fmt.Sprintf("%d,", node.Val))
+		dfs(node.Left)
+		dfs(node.Right)
 	}
-	return fmt.Sprintf("%d,%s,%s", root.Val, this.serialize(root.Left), this.serialize(root.Right))
+
+	dfs(root)
+	return sb.String()
 }
 
 // Deserializes your encoded data to tree.
 func (this *Codec) deserialize(data string) *TreeNode {
-	root, _ := helper(strings.Split(data, ","))
-	return root
-}
+	parts := strings.Split(data[:len(data)-1], ",")
+	idx := 0
 
-func helper(queue []string) (*TreeNode, []string) {
+	var dfs func() *TreeNode
+	dfs = func() *TreeNode {
+		if idx == len(parts) {
+			return nil
+		}
 
-	elem := queue[0]
-	queue = queue[1:]
+		part := parts[idx]
+		idx++
 
-	if elem == "-" {
-		return nil, queue
+		if part == "#" {
+			return nil
+		}
+
+		val, _ := strconv.Atoi(part)
+		node := &TreeNode{val, nil, nil}
+		node.Left = dfs()
+		node.Right = dfs()
+		return node
 	}
 
-	val, _ := strconv.Atoi(elem)
-	left, queue := helper(queue)
-	right, queue := helper(queue)
-
-	return &TreeNode{
-		Val:   val,
-		Left:  left,
-		Right: right,
-	}, queue
+	return dfs()
 }
 
 /**
