@@ -1,6 +1,6 @@
 package _088
 
-func merge(nums1 []int, m int, nums2 []int, n int) {
+func merge___(nums1 []int, m int, nums2 []int, n int) {
 
 	i, j, cur := m-1, n-1, m+n-1
 	for ; i >= 0 && j >= 0; cur-- {
