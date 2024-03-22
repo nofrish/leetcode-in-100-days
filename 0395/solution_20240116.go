@@ -6,7 +6,7 @@ import (
 
 func longestSubstring(s string, k int) int {
 
-	counts := make(map[byte]int, 0)
+	counts := make(map[byte]int)
 	for i := 0; i < len(s); i++ {
 		counts[s[i]] += 1
 	}
