@@ -11,12 +11,12 @@ func minWindow_(s string, t string) string {
 		return true
 	}
 
-	tgt := make(map[byte]int, 0)
+	tgt := make(map[byte]int)
 	for i := 0; i < len(t); i++ {
 		tgt[t[i]] += 1
 	}
 
-	slow, fast, result, exists := 0, -1, "", make(map[byte]int, 0)
+	slow, fast, result, exists := 0, -1, "", make(map[byte]int)
 	for fast++; fast < len(s); fast++ {
 		exists[s[fast]] += 1
 		for ; satisfied(exists, tgt); slow++ {
