@@ -10,21 +10,31 @@ func spiralOrder(matrix [][]int) (result []int) {
 			result = append(result, matrix[x][y])
 		}
 		up++
+		if up > down {
+			break
+		}
+
 		for x, y := up, right; x <= down; x++ {
 			result = append(result, matrix[x][y])
 		}
 		right--
+		if right < left {
+			break
+		}
+
 		for x, y := down, right; y >= left; y-- {
 			result = append(result, matrix[x][y])
 		}
 		down--
+		if down < up {
+			break
+		}
+
 		for x, y := down, left; x >= up; x-- {
 			result = append(result, matrix[x][y])
 		}
 		left++
-
-		if len(result) >= m*n {
-			result = result[:m*n]
+		if left > right {
 			break
 		}
 	}
