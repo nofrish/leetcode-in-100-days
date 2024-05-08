@@ -6,32 +6,27 @@ func searchRange(nums []int, target int) []int {
 		return []int{-1, -1}
 	}
 
-	start, end := 0, 0
-
-	low, high := 0, len(nums)-1
-	for low < high {
-		mid := (low + high) >> 1
+	lo, hi := 0, len(nums)-1
+	for lo < hi {
+		mid := (lo + hi) >> 1
 		if nums[mid] < target {
-			low = mid + 1
+			lo = mid + 1
 		} else {
-			high = mid
+			hi = mid
 		}
 	}
-	if nums[high] != target {
+	if nums[lo] != target {
 		return []int{-1, -1}
 	}
-	start = high
 
-	low, high = 0, len(nums)-1
-	for low < high {
-		mid := (low + high + 1) >> 1
+	start, hi := lo, len(nums)-1
+	for lo < hi {
+		mid := (lo + hi + 1) >> 1
 		if nums[mid] > target {
-			high = mid - 1
+			hi = mid - 1
 		} else {
-			low = mid
+			lo = mid
 		}
 	}
-	end = low
-
-	return []int{start, end}
+	return []int{start, lo}
 }
