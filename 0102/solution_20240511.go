@@ -8,7 +8,7 @@ package _102
  *     Right *TreeNode
  * }
  */
-func levelOrder(root *TreeNode) (result [][]int) {
+func levelOrder__(root *TreeNode) (result [][]int) {
 
 	nexts := []*TreeNode{root}
 	for len(nexts) != 0 {
